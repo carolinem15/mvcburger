@@ -1,11 +1,33 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(function() {
+  $(".change-devour").on("click", function(event) {
+    var id = $(this).data("id");
+    var newDevour = $(this).data("newdevour");
+
+    var newDevourState = {
+      devour: newDevour
+    };
+
+    // Send the PUT request.
+    $.ajax("/api/burgers/" + id, {
+      type: "PUT",
+      data: newDevourState
+    }).then(
+      function() {
+        console.log("changed devoured to", newDevour);
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
+
   $(".create-form").on("submit", function(event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
 
     var newBurger = {
-      burger: $("#burg").val().trim()
+      name: $("#burg").val().trim(),
+      devour: $("[name=devour]:checked").val().trim()
     };
 
     // Send the POST request.
@@ -21,27 +43,18 @@ $(function() {
     );
   });
 
-  // $(".update-form").on("submit", function(event) {
-  //   // Make sure to preventDefault on a submit event.
-  //   event.preventDefault();
+  $(".delete-burger").on("click", function(event) {
+    var id = $(this).data("id");
 
-  //   var updatedBurger = {
-  //     burger: $("#burger").val().trim()
-  //   };
-
-  //   var id = $(this).data("id");
-
-  //   // Send the POST request.
-  //   $.ajax("/api/burgers/" + id, {
-  //     type: "PUT",
-  //     data: updatedBurger
-  //   }).then(
-  //     function() {
-  //       console.log("updated burger");
-  //       // Reload the page to get the updated list
-  //       location.assign("/");
-  //     }
-  //   );
-  // });
+    // Send the DELETE request.
+    $.ajax("/api/burgers/" + id, {
+      type: "DELETE"
+    }).then(
+      function() {
+        console.log("deleted burger", id);
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
   });
-  
+});
