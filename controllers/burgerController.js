@@ -1,12 +1,13 @@
 var express = require("express");
 
 var router = express.Router();
+var connection = require("../config/connection.js");
 
-// Import the model (burger.js) to use its database functions.
-var burger = require("../models/burger.js");
+// // Import the model (burger.js) to use its database functions.
+// var burger = require("../models/burger.js");
 
 // Serve index.handlebars to the root route.
-app.get("/", function(req, res) {
+router.get("/", function(req, res) {
   connection.query("SELECT * FROM burgers;", function(err, data) {
     if (err) {
       return res.status(500).end();
@@ -16,7 +17,7 @@ app.get("/", function(req, res) {
   });
 });
 
-app.post("/api/burgers", function(req, res) {
+router.post("/api/burgers", function(req, res) {
   connection.query("INSERT INTO burgers (name) VALUES (?, ?)", [req.body.name], function(
     err,
     result
@@ -32,7 +33,7 @@ app.post("/api/burgers", function(req, res) {
 });
 
 // Update a quote by an id and then redirect to the root route.
-app.put("/api/burgers/:id", function(req, res) {
+router.put("/api/burgers/:id", function(req, res) {
   connection.query(
     "UPDATE burgers SET name = ? WHERE id = ?",
     [req.body.name, req.params.id],
