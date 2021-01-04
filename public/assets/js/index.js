@@ -5,7 +5,7 @@ $(function() {
     event.preventDefault();
 
     var newBurger = {
-      burger: $("#quo").val().trim()
+      burger: $("#burg").val().trim()
     };
 
     // Send the POST request.
@@ -21,27 +21,27 @@ $(function() {
     );
   });
 
-  $(".update-form").on("submit", function(event) {
-    // Make sure to preventDefault on a submit event.
-    event.preventDefault();
+  // $(".update-form").on("submit", function(event) {
+  //   // Make sure to preventDefault on a submit event.
+  //   event.preventDefault();
 
-    var updatedBurger = {
-      burger: $("#quo").val().trim()
-    };
+  //   var updatedBurger = {
+  //     burger: $("#burger").val().trim()
+  //   };
 
-    var id = $(this).data("id");
+  //   var id = $(this).data("id");
 
-    // Send the POST request.
-    $.ajax("/api/burgers/" + id, {
-      type: "PUT",
-      data: updatedBurger
-    }).then(
-      function() {
-        console.log("updated burger");
-        // Reload the page to get the updated list
-        location.assign("/");
-      }
-    );
-  });
+  //   // Send the POST request.
+  //   $.ajax("/api/burgers/" + id, {
+  //     type: "PUT",
+  //     data: updatedBurger
+  //   }).then(
+  //     function() {
+  //       console.log("updated burger");
+  //       // Reload the page to get the updated list
+  //       location.assign("/");
+  //     }
+  //   );
+  // });
   });
   

@@ -2,8 +2,8 @@ var express = require("express");
 var router = express.Router();
 var connection = require("../config/connection.js");
 
-// // Import the model (burger.js) to use its database functions.
-// var burger = require("../models/burger.js");
+// Import the model (burger.js) to use its database functions.
+var burger = require("../models/burger.js");
 
 // Serve index.handlebars to the root route.
 router.get("/", function(req, res) {
