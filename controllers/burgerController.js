@@ -7,12 +7,12 @@ var burger = require("../models/burger.js");
 
 // Serve index.handlebars to the root route.
 router.get("/index", function(req, res) {
-  connection.query("SELECT * FROM burgers;", function(err, data) {
-    if (err) {
-      return res.status(500).end();
-    }
-
-    res.render("index", { burgers: data });
+  burger.all(function(data) {
+    var hbsObject = {
+      burgers: data
+    };
+    console.log(hbsObject);
+    res.render("index", hbsObject);
   });
 });
 
