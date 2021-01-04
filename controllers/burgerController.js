@@ -6,7 +6,7 @@ var connection = require("../config/connection.js");
 var burger = require("../models/burger.js");
 
 // Serve index.handlebars to the root route.
-router.get("/", function(req, res) {
+router.get("/index", function(req, res) {
   connection.query("SELECT * FROM burgers;", function(err, data) {
     if (err) {
       return res.status(500).end();
@@ -17,10 +17,7 @@ router.get("/", function(req, res) {
 });
 
 router.post("/api/burgers", function(req, res) {
-  connection.query("INSERT INTO burgers (name) VALUES (?, ?)", [req.body.name], function(
-    err,
-    result
-  ) {
+  connection.query("INSERT INTO burgers (name) VALUES (?)", [req.body.name], function(err, result) {
     if (err) {
       // If an error occurred, send a generic server failure
       return res.status(500).end();
