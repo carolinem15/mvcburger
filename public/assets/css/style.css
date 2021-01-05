@@ -1,7 +1,12 @@
+body {
+  background-image: url("https://i.redd.it/qc6dub0npxv21.png");
+  background-size: cover
+}
+
 li {
     padding: 5px;
     margin: 5px;
-    background: #faebd7;
+    list-style-type: none
   }
   
   .label {
@@ -18,3 +23,12 @@ li {
     margin-bottom: 5px;
   }
   
+  .change-devour {
+    background-color: yellow;
+    padding: 5px
+  }
+
+  .submitBtn {
+    background-color: yellow;
+    padding: 10px
+  }
